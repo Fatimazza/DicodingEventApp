@@ -1,5 +1,6 @@
 package id.fatimazza.dicodingeventapp.ui.upcoming
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -30,20 +31,27 @@ class UpcomingViewModel : ViewModel() {
     private fun getUpcomingEvents() {
         val client = ApiConfig.getApiService().getEvents(IS_EVENT_ACTIVE)
         client.enqueue(object : Callback<EventResponse> {
+
             override fun onResponse(
                 call: Call<EventResponse?>,
                 response: Response<EventResponse?>
             ) {
-                TODO("Not yet implemented")
+                if (response.isSuccessful) {
+                    val responseBody = response.body()
+                    if (responseBody != null) {
+                        _listUpcoming.value = responseBody?.listEvents
+                    } else {
+                        Log.e(TAG, "onFailure: ${response.message()}")
+                    }
+                }
             }
 
             override fun onFailure(
                 call: Call<EventResponse?>,
                 t: Throwable
             ) {
-                TODO("Not yet implemented")
+                Log.e(TAG, "onFailure: ${t.message}")
             }
-
         })
     }
 }
