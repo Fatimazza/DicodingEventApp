@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.*
 import id.fatimazza.dicodingeventapp.data.response.ListEventsItem
 import id.fatimazza.dicodingeventapp.databinding.ItemListEventsBinding
 
@@ -30,6 +31,9 @@ class UpcomingAdapter:
     class ItemViewHolder(val binding: ItemListEventsBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(events: ListEventsItem) {
             binding.tvEventTitle.text = "${events.name}"
+            Glide.with(binding.root)
+                .load(events.mediaCover)
+                .into(binding.ivEventImage)
         }
     }
 
