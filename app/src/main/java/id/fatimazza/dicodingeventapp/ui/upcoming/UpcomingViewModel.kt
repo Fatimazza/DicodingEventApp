@@ -29,6 +29,7 @@ class UpcomingViewModel : ViewModel() {
     }
 
     private fun getUpcomingEvents() {
+        _isLoading.value = true
         val client = ApiConfig.getApiService().getEvents(IS_EVENT_ACTIVE)
         client.enqueue(object : Callback<EventResponse> {
 
@@ -36,6 +37,7 @@ class UpcomingViewModel : ViewModel() {
                 call: Call<EventResponse?>,
                 response: Response<EventResponse?>
             ) {
+                _isLoading.value = false
                 if (response.isSuccessful) {
                     val responseBody = response.body()
                     if (responseBody != null) {
@@ -50,6 +52,7 @@ class UpcomingViewModel : ViewModel() {
                 call: Call<EventResponse?>,
                 t: Throwable
             ) {
+                _isLoading.value = false
                 Log.e(TAG, "onFailure: ${t.message}")
             }
         })

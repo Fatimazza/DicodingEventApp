@@ -29,6 +29,10 @@ class UpcomingFragment : Fragment() {
 
         setupUpcomingEventList()
 
+        upcomingViewModel.isLoading.observe(viewLifecycleOwner) {
+            showLoading(it)
+        }
+
         return root
     }
 
