@@ -34,14 +34,14 @@ class UpcomingAdapter:
                 oldItem: ListEventsItem,
                 newItem: ListEventsItem
             ): Boolean {
-                TODO("Not yet implemented")
+                return oldItem == newItem
             }
 
             override fun areContentsTheSame(
                 oldItem: ListEventsItem,
                 newItem: ListEventsItem
             ): Boolean {
-                TODO("Not yet implemented")
+                return oldItem == newItem
             }
         }
     }
