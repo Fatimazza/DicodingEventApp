@@ -37,9 +37,9 @@ class UpcomingFragment : Fragment() {
     }
 
     private fun setupUpcomingEventList() {
-        val layoutManager = LinearLayoutManager(requireContext())
+        val layoutManager = LinearLayoutManager(requireActivity())
         binding.rvListUpcomingEvents.layoutManager = layoutManager
-        val itemDecoration = DividerItemDecoration(requireContext(), layoutManager.orientation)
+        val itemDecoration = DividerItemDecoration(requireActivity(), layoutManager.orientation)
         binding.rvListUpcomingEvents.addItemDecoration(itemDecoration)
     }
 
