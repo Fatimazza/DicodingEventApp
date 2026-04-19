@@ -6,7 +6,9 @@ import androidx.lifecycle.ViewModel
 import id.fatimazza.dicodingeventapp.data.response.EventResponse
 import id.fatimazza.dicodingeventapp.data.response.ListEventsItem
 import id.fatimazza.dicodingeventapp.data.retrofit.ApiConfig
+import retrofit2.Call
 import retrofit2.Callback
+import retrofit2.Response
 
 class UpcomingViewModel : ViewModel() {
 
@@ -28,6 +30,19 @@ class UpcomingViewModel : ViewModel() {
     private fun getUpcomingEvents() {
         val client = ApiConfig.getApiService().getEvents(IS_EVENT_ACTIVE)
         client.enqueue(object : Callback<EventResponse> {
+            override fun onResponse(
+                call: Call<EventResponse?>,
+                response: Response<EventResponse?>
+            ) {
+                TODO("Not yet implemented")
+            }
+
+            override fun onFailure(
+                call: Call<EventResponse?>,
+                t: Throwable
+            ) {
+                TODO("Not yet implemented")
+            }
 
         })
     }
