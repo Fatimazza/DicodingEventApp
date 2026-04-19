@@ -1,5 +1,6 @@
 package id.fatimazza.dicodingeventapp.ui.upcoming
 
+import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
@@ -14,18 +15,22 @@ class UpcomingAdapter:
         parent: ViewGroup,
         viewType: Int
     ): ItemViewHolder {
-        TODO("Not yet implemented")
+        val binding = ItemListEventsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return ItemViewHolder(binding)
     }
 
     override fun onBindViewHolder(
         holder: ItemViewHolder,
         position: Int
     ) {
-        TODO("Not yet implemented")
+        val event = getItem(position)
+        holder.bind(event)
     }
 
     class ItemViewHolder(val binding: ItemListEventsBinding) : RecyclerView.ViewHolder(binding.root) {
-
+        fun bind(events: ListEventsItem) {
+            binding.tvEventTitle.text = "${events.name}"
+        }
     }
 
     companion object {
