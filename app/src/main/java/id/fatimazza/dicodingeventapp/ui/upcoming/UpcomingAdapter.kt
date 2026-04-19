@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.*
+import id.fatimazza.dicodingeventapp.R
 import id.fatimazza.dicodingeventapp.data.response.ListEventsItem
 import id.fatimazza.dicodingeventapp.databinding.ItemListEventsBinding
 
@@ -35,6 +36,7 @@ class UpcomingAdapter :
             binding.tvEventTitle.text = "${events.name}"
             Glide.with(binding.root)
                 .load(events.mediaCover)
+                .placeholder(R.drawable.ic_launcher_foreground)
                 .into(binding.ivEventImage)
         }
     }
