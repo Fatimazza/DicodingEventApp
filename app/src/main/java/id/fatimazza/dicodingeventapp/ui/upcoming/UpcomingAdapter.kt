@@ -9,14 +9,15 @@ import com.bumptech.glide.*
 import id.fatimazza.dicodingeventapp.data.response.ListEventsItem
 import id.fatimazza.dicodingeventapp.databinding.ItemListEventsBinding
 
-class UpcomingAdapter:
+class UpcomingAdapter :
     ListAdapter<ListEventsItem, UpcomingAdapter.ItemViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ItemViewHolder {
-        val binding = ItemListEventsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ItemListEventsBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return ItemViewHolder(binding)
     }
 
@@ -28,7 +29,8 @@ class UpcomingAdapter:
         holder.bind(event)
     }
 
-    class ItemViewHolder(val binding: ItemListEventsBinding) : RecyclerView.ViewHolder(binding.root) {
+    class ItemViewHolder(val binding: ItemListEventsBinding) :
+        RecyclerView.ViewHolder(binding.root) {
         fun bind(events: ListEventsItem) {
             binding.tvEventTitle.text = "${events.name}"
             Glide.with(binding.root)
@@ -38,7 +40,7 @@ class UpcomingAdapter:
     }
 
     companion object {
-        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ListEventsItem>(){
+        val DIFF_CALLBACK = object : DiffUtil.ItemCallback<ListEventsItem>() {
             override fun areItemsTheSame(
                 oldItem: ListEventsItem,
                 newItem: ListEventsItem
