@@ -8,6 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import id.fatimazza.dicodingeventapp.data.response.ListEventsItem
 import id.fatimazza.dicodingeventapp.databinding.FragmentUpcomingBinding
 
 class UpcomingFragment : Fragment() {
@@ -29,6 +30,10 @@ class UpcomingFragment : Fragment() {
 
         setupUpcomingEventList()
 
+        upcomingViewModel.listUpcoming.observe(viewLifecycleOwner) { upcomingEvents ->
+            setListEventsData(upcomingEvents)
+        }
+
         upcomingViewModel.isLoading.observe(viewLifecycleOwner) {
             showLoading(it)
         }
@@ -41,6 +46,12 @@ class UpcomingFragment : Fragment() {
         binding.rvListUpcomingEvents.layoutManager = layoutManager
         val itemDecoration = DividerItemDecoration(requireActivity(), layoutManager.orientation)
         binding.rvListUpcomingEvents.addItemDecoration(itemDecoration)
+    }
+
+    private fun setListEventsData(upcomingEvents: List<ListEventsItem>) {
+        val adapter = UpcomingAdapter()
+        adapter.submitList(upcomingEvents)
+        binding.rvListUpcomingEvents.adapter = adapter
     }
 
     private fun showLoading(isLoading: Boolean) {
